@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-import json
+import os
+import shutil
 import random
 
 from parse import parse_lines
@@ -8,6 +9,10 @@ from parse import parse_lines
 PATH = "../resources"
 
 IMG_PATH = f"{PATH}/test_images"
+
+TRAIN_PATH = f"{PATH}/Train"
+VAL_PATH = f"{PATH}/Validation"
+TEST_PATH = f"{PATH}/Test"
 
 SEED = 42
 
@@ -29,21 +34,20 @@ def split_train_val_test():
 
     val_split = int((SPLIT_AMOUNT[1] + SPLIT_AMOUNT[0]) * num_img)
 
-    split = {
-        "Train": images[:train_split],
-        "Validation": images[train_split: val_split],
-        "Test": images[val_split:]
-    }
+    move_files(TRAIN_PATH, images[:train_split])
+    move_files(VAL_PATH, images[train_split: val_split])
+    move_files(TEST_PATH, images[val_split:])
 
-    response = {
-        "Splits": split,
-        "Data": data_set 
-    }
 
-    return response
+def move_files(file_path: str, images: list):
+    shutil.rmtree(file_path)
+
+    os.makedirs(file_path)
+
+    for image in images:
+        path = os.path.join(IMG_PATH, image)
+        shutil.copy(path, file_path)
+    
 
 if __name__ == "__main__":
-    res = split_train_val_test()
-
-    with open(f"{PATH}/test.json", "w") as f:
-        json.dump(res, f, indent=4)
+    split_train_val_test()
