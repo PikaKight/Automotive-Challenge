@@ -14,6 +14,7 @@ def parse_lines(file_path):
     
     return parsed_data
 
+if __name__ == "__main__":
 # Example usage
-file_path = r"C:\Users\aaqil\Downloads\parking_dataset\train_labels.txt"  # Replace with your actual file path
-data = parse_lines(file_path)
+    file_path = r"C:\Users\aaqil\Downloads\parking_dataset\train_labels.txt"  # Replace with your actual file path
+    data = parse_lines(file_path)
