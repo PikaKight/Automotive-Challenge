@@ -6,7 +6,7 @@ status = []
 coordinates = []
 
 # Open the file in read mode
-with open(r'C:\Users\aaqil\Downloads\parking_dataset\train_labels.txt', 'r') as file:
+with open("./resources/test_labels.txt", 'r') as file:
     for line in file:
         # Simplified regular expression to match file name, status, and four coordinates
         match = re.match(r'([a-zA-Z0-9_-]+\.jpg)\s(\d+)\s(\d+\.\d+|\d+)\s(\d+\.\d+|\d+)\s(\d+\.\d+|\d+)\s(\d+\.\d+|\d+)', line)
