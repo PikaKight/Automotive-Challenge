@@ -110,13 +110,14 @@ if __name__ == "__main__":
     
 
     model_path = "backend/model/parking.pt"
-
+    setup()
+    
     if not os.path.exists(model_path):
-        setup()
+        
 
         parking_model(path, model_path)
 
-        parking_metrics(model_path, path)
+    parking_metrics(model_path, path)
 
     test = "resources/test/test_images/"
 
