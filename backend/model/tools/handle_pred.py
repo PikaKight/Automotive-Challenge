@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import cv2
 
-def to_txt(results: dict):
+def to_txt(results: dict, dest: str):
     
     lines = []
 
@@ -20,7 +20,8 @@ def to_txt(results: dict):
             
             lines.append(line)
     
-    return lines
+    with open(dest, 'w') as f:
+        f.writelines(lines)
 
 def draw_boxes(results: dict, folder_path: str):
     
@@ -34,8 +35,6 @@ def draw_boxes(results: dict, folder_path: str):
 
         for lot in results[img]:
             
-            print(lot[0])
-
             match lot[0]:
                 case 1:
                     color = (0,255,0)
@@ -61,10 +60,7 @@ if __name__ == "__main__":
     with open("resources/test/test_res/test.json", 'r') as f:
         res = json.load(f)
 
-    lines = to_txt(res)
-
-    with open("resources/test/test_res/test.txt", 'w') as f:
-        f.writelines(lines)
+    to_txt(res, "resources/test/test_res/results.txt")
 
     images = draw_boxes(res, "resources/test/test_images")
 
