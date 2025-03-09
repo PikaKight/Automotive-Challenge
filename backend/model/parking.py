@@ -3,8 +3,6 @@ import os
 
 from ultralytics import YOLO, settings
 
-from backend.model.tools.handle_pred import draw
-
 def setup():
     cwd = os.getcwd()
 
@@ -48,7 +46,7 @@ def parking_metrics(model_path, yaml_path):
 def parking_pred(model_path: str, tests: list):
     model = YOLO(model_path)
 
-    pred = model(tests, conf=0.3)
+    pred = model(tests, conf=0.2)
 
 
     results = {}
