@@ -1,7 +1,6 @@
-path: resources
-train: images/Train
-val: images/Validation
-test: images/Test
+path: resources/training
+train: images/train
+val: images/val
 
 names:
   0: vacant

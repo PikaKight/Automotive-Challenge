@@ -1,4 +1,5 @@
-import os
+#!/usr/bin/env python
+
 from PIL import Image
 
 def parse_lines(folder_path, file, folder):
@@ -43,7 +44,8 @@ def parse_lines(folder_path, file, folder):
     return parsed_data
 
 
+
 if __name__ == "__main__":
 # Example usage
-    file_path = r"C:\Users\aaqil\Downloads\parking_dataset\train_labels.txt"  # Replace with your actual file path
+    file_path = "resources/test_labels.txt"  # Replace with your actual file path
     data = parse_lines(file_path)
