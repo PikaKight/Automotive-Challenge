@@ -1,1 +1,8 @@
-path: ../resources
+path: resources
+train: images/Train
+val: images/Validation
+test: images/Test
+
+names:
+  0: vacant
+  1: occupied
