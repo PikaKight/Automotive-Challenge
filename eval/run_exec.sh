@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Default values
-IMAGE_PATH=""
-OUTPUT_PATH=""
+IMAGE_PATH="backend/model/parking.pt"
+OUTPUT_PATH="resources/test"
 
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do

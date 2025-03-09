@@ -8,6 +8,8 @@ PATH = "resources/training"
 
 
 def split_train_val():
+    """Splits the images into the train and val and makes the labels
+    """
 
     train = parse_lines(PATH, "train_labels.txt", "train_images")
 
@@ -20,18 +22,37 @@ def split_train_val():
     make_labels("val", val.keys(), val)
 
 def copy_files(folder: str, file_path: str, images: list):
+    """Copies the images to their respective folders
+
+    Args:
+        folder (str): Folder location where the images are held
+        file_path (str): The target folder location
+        images (list): The list of image paths
+    """
+
+    # Checks if the folder already exists
     if os.path.exists(file_path):
+
+        # Deletes the folder
         shutil.rmtree(file_path)
 
+    # Creates the target folder location
     os.makedirs(file_path)
 
+    # Copies over the images
     for image in images:
         path = os.path.join(folder, image)
         shutil.copy(path, file_path)
     
 
 def make_labels(cat:str, images: list, dataset: dict):
+    """Separates the labels from the general label txt into individual txt for each image
 
+    Args:
+        cat (str): The type of label its used for (train, val)
+        images (list): List of the image paths
+        dataset (dict): The dataset
+    """
     label_dir = f"{PATH}/labels/{cat}"
 
     if os.path.exists(label_dir):

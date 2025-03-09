@@ -5,6 +5,7 @@ import os
 
 def compute_iou(box1, box2):
     """Compute IoU between two bounding boxes."""
+    
     x1 = max(box1[0], box2[0])
     y1 = max(box1[1], box2[1])
     x2 = min(box1[2], box2[2])
@@ -52,7 +53,7 @@ def mean_average_precision(predictions, ground_truths, iou_threshold=0.5):
             best_gt_idx = -1
 
             for j, gt in enumerate(img_gts):
-                iou = compute_iou(pred[3:], gt[2:])
+                iou = compute_iou(pred[2:], gt[2:])
                 if iou > best_iou:
                     best_iou = iou
                     best_gt_idx = j

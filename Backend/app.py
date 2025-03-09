@@ -6,6 +6,8 @@ app = Flask(__name__)
 # Correct path to to_send folder
 PROCESSED_FOLDER = os.path.join(os.getcwd(), "Backend", "to_send")
 
+MODEL_PATH = "model/parking.pt"
+
 @app.route('/get-parking-spots', methods=['POST'])
 def get_parking_spots():
     # List available processed images in the folder

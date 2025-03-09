@@ -2,13 +2,19 @@
 import cv2
 
 def to_txt(results: dict, dest: str):
-    
+    """Turns the results of the model to a single txt file
+
+    Args:
+        results (dict): The results of the model
+        dest (str): The file path where the txt file should be stored
+    """
     lines = []
 
     for img in results.keys():
         
         for lot in results[img]:
-            
+
+            # Transforms the vacancy into the required formate            
             match lot[0]:
 
                 case 0.0:
@@ -23,8 +29,16 @@ def to_txt(results: dict, dest: str):
     with open(dest, 'w') as f:
         f.writelines(lines)
 
-def draw_boxes(results: dict, folder_path: str):
-    
+def draw_boxes(results: dict, folder_path: str) -> list:
+    """Draws the boxes on the images
+
+    Args:
+        results (dict): The results of the model
+        folder_path (str): The location of the images
+
+    Returns:
+        list: A list of OpenCV Images that has the boxes drawn
+    """
     thickness = 2
 
     images = []
@@ -35,18 +49,23 @@ def draw_boxes(results: dict, folder_path: str):
 
         for lot in results[img]:
             
+            # Sets the color of the box based on the vacancy
             match lot[0]:
                 case 1:
-                    color = (0,255,0)
+                    color = (0,255,0) # Green for vacant
+                    text = "Vacant"
                     
                 case 2:
-                    color = (0, 0, 255)
+                    color = (0, 0, 255) # Red for occupied
+                    text = "Occupied"
             
+            # Sets the start and end points of the box
             start = (int(lot[1]), int(lot[2]))
             end = (int(lot[3]), int(lot[4]))
 
+            # Draws the rectangle and adds a text
             cv2.rectangle(image, start, end, color, thickness)
-            cv2.putText(image, f"{lot[0]}", (int(lot[1]), int(lot[4]) + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.3, color)
+            cv2.putText(image, text, (int(lot[1]), int(lot[4]) + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.3, color)
         
         images.append(image)
 
