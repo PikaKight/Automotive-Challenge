@@ -1,5 +1,9 @@
 import os, random
+
 from flask import Flask, request, jsonify, send_from_directory
+
+from model.parking import parking_pred
+from model.tools.handle_pred import to_txt
 
 app = Flask(__name__)
 

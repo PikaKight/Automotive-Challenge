@@ -9,3 +9,4 @@ The computer vision model analyzes a given picture of a parking lot and identifi
 ### Model Creation and Training
 
 The model uses the YOLO11n pre-trained model to act as the bases and is trained with provided dataset.
+
