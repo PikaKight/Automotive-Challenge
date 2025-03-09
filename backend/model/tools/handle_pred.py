@@ -29,19 +29,16 @@ def to_txt(results: dict, dest: str):
     with open(dest, 'w') as f:
         f.writelines(lines)
 
-def draw_boxes(results: dict, folder_path: str) -> list:
+def draw_boxes(results: dict, folder_path: str, dest_path: str) -> None:
     """Draws the boxes on the images
 
     Args:
         results (dict): The results of the model
         folder_path (str): The location of the images
+        dest_path (str): The destination path
 
-    Returns:
-        list: A list of OpenCV Images that has the boxes drawn
     """
     thickness = 2
-
-    images = []
 
     for img in results.keys():
         
@@ -67,9 +64,8 @@ def draw_boxes(results: dict, folder_path: str) -> list:
             cv2.rectangle(image, start, end, color, thickness)
             cv2.putText(image, text, (int(lot[1]), int(lot[4]) + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.3, color)
         
-        images.append(image)
+        cv2.imwrite(f"{dest_path}/{img}", image)            
 
-    return images
 
 if __name__ == "__main__":
     import json
@@ -81,11 +77,5 @@ if __name__ == "__main__":
 
     to_txt(res, "resources/test/test_res/results.txt")
 
-    images = draw_boxes(res, "resources/test/test_images")
+    draw_boxes(res, "resources/test/test_images", "resources/test/test_dest")
 
-    for img in images:
-        cv2.imshow(window_name, img)
-
-        cv2.waitKey(0)
-
-        cv2.destroyAllWindows()
