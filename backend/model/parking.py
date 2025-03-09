@@ -108,11 +108,12 @@ if __name__ == "__main__":
 
     path = "backend/model/parking.yaml"
     
-    setup()
 
     model_path = "backend/model/parking.pt"
 
     if not os.path.exists(model_path):
+        setup()
+
         parking_model(path, model_path)
 
         parking_metrics(model_path, path)
