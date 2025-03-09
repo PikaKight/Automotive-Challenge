@@ -1,4 +1,11 @@
 fastapi==0.115.11
-opencv-python==4.11.0.86
+uvicorn==0.34.0
+
 pandas==2.2.3
 streamlit==1.43.1
+
+opencv-python==4.11.0.86
+ultralytics==8.3.85
+
+torch==2.6.0 --index-url https://download.pytorch.org/whl/cu118
+torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu118

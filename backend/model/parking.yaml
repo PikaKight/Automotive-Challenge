@@ -1,0 +1,7 @@
+path: resources/training
+train: images/train
+val: images/val
+
+names:
+  0: vacant
+  1: occupied
