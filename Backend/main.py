@@ -10,8 +10,8 @@ from model.tools.handle_pred import to_txt
 MODEL = "backend/model/parking.pt"
 
 parser = argparse.ArgumentParser(description="Run solution")
-parser.add_argument("--image_folder", action="image_folder", type=str, help="Image Folder path")
-parser.add_argument("--results_folder", action="results_folder, type=str, help="Result folder path")
+parser.add_argument("image_folder", type=str, help="Image Folder path")
+parser.add_argument("results_folder", type=str, help="Result folder path")
 args = parser.parse_args()
 
 
