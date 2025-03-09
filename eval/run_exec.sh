@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Default values
-IMAGE_PATH="backend/model/parking.pt"
-OUTPUT_PATH="resources/test"
+IMAGE_PATH="resources/test/test_images"
+OUTPUT_PATH="resources/test/test_res"
 
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
@@ -36,4 +36,4 @@ echo "Image Path: $IMAGE_PATH"
 echo "Output Path: $OUTPUT_PATH"
 
 # Run the Python script
-python backend/main.py --image_folder "$IMAGE_PATH" --results_folder "$OUTPUT_PATH"
+python backend/main.py "$IMAGE_PATH" "$OUTPUT_PATH"
